@@ -10,8 +10,8 @@ export default function Footer(){
 
 const styles = StyleSheet.create({
     footer: {
-        flex: 2,
-        backgroundColor: "#998560",
+        padding: 15,
+        //backgroundColor: "#998560",
         justifyContent: 'center',
         alignItems: 'center'
     }

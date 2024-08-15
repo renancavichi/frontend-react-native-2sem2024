@@ -8,7 +8,8 @@ export default function Header(){
             <View style={styles.user}>
                 <Image 
                     style={styles.avatar}
-                    source="https://avatars.githubusercontent.com/u/4259630?v=4"
+                    source={require('../assets/avatar-renan.jpg')} //Local
+                    //source="https://avatars.githubusercontent.com/u/4259630?v=4"
                 />
                 <Text style={styles.name}>Renan Cavichi</Text>
             </View>
@@ -19,12 +20,11 @@ export default function Header(){
 
 const styles = StyleSheet.create({
     header: {
-        flex: 1,
         //backgroundColor: "#899986",
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 15
+        padding: 15,
     },
     user: {
         flexDirection: 'row',

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Content from './components/Content'
@@ -6,13 +6,13 @@ import Content from './components/Content'
 
 export default function App() {
   return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         
         <Header />
         <Content />
         <Footer />
       
-      </View>
+      </ScrollView>
   )
 }
 
