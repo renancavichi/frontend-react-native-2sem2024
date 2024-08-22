@@ -1,5 +1,6 @@
 import {View, StyleSheet} from 'react-native'
 //import CardAccount from './CardAccount'
+import CardAccount2 from './CardAccount2'
 
 export default function Content(){
 
@@ -28,7 +29,7 @@ export default function Content(){
         <View style={styles.content}>
         {
           accounts.map( (account) => 
-            <CardAccount
+            <CardAccount2
               key={account.id} 
               service={account.service}
               imgUrl={account.imgUrl}
