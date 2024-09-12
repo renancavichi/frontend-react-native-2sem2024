@@ -93,8 +93,6 @@ export default function Content(){
           >
             <Text>Cadatrar</Text>
           </Pressable>
-
-
         </View>        
 
         { accounts.length === 0 && <Text>Loading...</Text>}
@@ -102,10 +100,13 @@ export default function Content(){
         {
           accounts.map( (account) => 
             <CardAccount
-              key={account.id} 
+              key={account.id}
+              id={account.id} 
               service={account.service}
               imgUrl={account.logo_image}
               userName={account.username}
+              accounts={accounts}
+              setAccounts={setAccounts}
             /> 
           )
         }
