@@ -8,7 +8,7 @@ export default function Header(){
             <View style={styles.user}>
                 <Image 
                     style={styles.avatar}
-                    source={require('../assets/avatar-renan.jpg')} //Local
+                    source={require('../../assets/avatar-renan.jpg')} //Local
                     //source="https://avatars.githubusercontent.com/u/4259630?v=4"
                 />
                 <Text style={styles.name}>Renan Cavichi</Text>
