@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import CardAccount from './CardAccount'
-import Button from './Button'
-import { useNavigation } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 
 export default function Content(){
 
   const [accounts, setAccounts] = useState([])
-  const navigation = useNavigation()
  
    useEffect(() => {
         const getAccounts = async () => {
@@ -31,8 +29,6 @@ export default function Content(){
                
         { accounts.length === 0 && <Text>Loading...</Text>}
 
-        <Button onPress={() => navigation.navigate('signup')}>+ Novo Serviço</Button>
-
         {
           accounts.map( (account) => 
             <CardAccount
@@ -41,6 +37,7 @@ export default function Content(){
               service={account.service}
               imgUrl={account.logo_image}
               userName={account.username}
+              pass={account.pass}
               accounts={accounts}
               setAccounts={setAccounts}
             /> 

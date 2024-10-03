@@ -1,8 +1,11 @@
 import {View, StyleSheet, Text, TextInput} from 'react-native'
 import { useState } from "react"
 import Button from '../components/Button'
+import { useNavigation } from 'expo-router'
 
 export default function Signup(){
+
+    const navigation = useNavigation()
 
     const [txtServico, setTxtServico] = useState('')
     const [txtUsername, setTxtUsername] = useState('')
@@ -29,7 +32,7 @@ export default function Signup(){
         if(response.ok){
             const data = await response.json()
             console.log(data)
-            setAccounts([data.account, ...accounts])
+            navigation.navigate('index')
             return
         }
 
@@ -38,7 +41,7 @@ export default function Signup(){
     }
 
     return( 
-        <View>
+        <View style={styles.container}>
           <Text>Serviço:</Text>
           <TextInput 
             style={styles.input}
@@ -72,13 +75,16 @@ export default function Signup(){
 }
 
 const styles = StyleSheet.create({
-    input: {
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: '#444444',
-      paddingHorizontal: 10,
-      paddingVertical: 6,
-      marginVertical: 5,
-      borderRadius: 5
-    }
+  container: {
+    padding: 20
+  },
+  input: {
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#444444',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginVertical: 5,
+    borderRadius: 5
+  }
 })

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet} from 'react-native'
 import { Image } from 'expo-image'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Feather from '@expo/vector-icons/Feather'
+import { Link } from 'expo-router'
 
 export default function Header(){
     return (
@@ -13,7 +14,9 @@ export default function Header(){
                 />
                 <Text style={styles.name}>Renan Cavichi</Text>
             </View>
-            <Ionicons style={styles.menu} name="menu" size={24} color="black" />
+            <Link href="signup">
+                <Feather style={styles.menu} name="plus" size={24} color="black" />
+            </Link>
         </View>
     )
 }
