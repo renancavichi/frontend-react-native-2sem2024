@@ -72,7 +72,6 @@ export default function Signup(){
             keyboardType='url'
           />
         <Button onPress={handleCreateAccount}>Cadatrar</Button>
-        <Button onPress={()=> navigation.navigate('index', {teste: 123})}>Cadatrar</Button>
         </View>
     )
 }
