@@ -1,8 +1,9 @@
-import {View, StyleSheet, Text, TextInput, Pressable} from 'react-native'
+import {View, StyleSheet, Text, TextInput} from 'react-native'
 import { Image } from 'expo-image'
 import Button from '../components/Button'
 import { useLocalSearchParams, useRouter} from 'expo-router'
 import { useAccountStore } from '../stores/useAccountStore'
+import * as Clipboard from 'expo-clipboard'
 
 export default function ShowPass(){
 
@@ -30,6 +31,11 @@ export default function ShowPass(){
         return
     }
 
+    const copyToClipboard = () => {
+        Clipboard.setString(account?.pass || '')
+        alert('Senha copiada!')
+    }
+
     return (
         <View style={{padding: 20}}>
             <View style={styles.card}>
@@ -45,7 +51,7 @@ export default function ShowPass(){
             <View>
                 <TextInput style={styles.input} value={account?.pass || ''} />
             </View>
-            <Button>Copiar Senha</Button>
+            <Button onPress={copyToClipboard}>Copiar Senha</Button>
             <View style={{flexDirection: 'row', gap: 20, flex: 1, justifyContent: 'space-between'}}>
                 <Button onPress={() => router.push({pathname: '/update', params: {id}})}>Editar</Button>
                 <Button onPress={handleDelete}>🗑 Excluir</Button>
