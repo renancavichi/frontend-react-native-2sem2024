@@ -1,11 +1,13 @@
 import {View, StyleSheet, Text, TextInput} from 'react-native'
 import { useState } from "react"
 import Button from '../components/Button'
-import { useNavigation } from 'expo-router'
+import { useRouter } from 'expo-router'
+import { useAccountStore } from '../stores/useAccountStore'
 
 export default function Signup(){
 
-    const navigation = useNavigation()
+    const { addAccount } = useAccountStore()
+    const router = useRouter()
 
     const [txtServico, setTxtServico] = useState('')
     const [txtUsername, setTxtUsername] = useState('')
@@ -31,8 +33,8 @@ export default function Signup(){
 
         if(response.ok){
             const data = await response.json()
-            console.log(data)
-            navigation.navigate('index')
+            addAccount(data.account)
+            router.back()
             return
         }
 
@@ -70,6 +72,7 @@ export default function Signup(){
             keyboardType='url'
           />
         <Button onPress={handleCreateAccount}>Cadatrar</Button>
+        <Button onPress={()=> navigation.navigate('index', {teste: 123})}>Cadatrar</Button>
         </View>
     )
 }
