@@ -46,7 +46,10 @@ export default function ShowPass(){
                 <TextInput style={styles.input} value={account?.pass || ''} />
             </View>
             <Button>Copiar Senha</Button>
-            <Button onPress={handleDelete}>🗑 Excluir</Button>
+            <View style={{flexDirection: 'row', gap: 20, flex: 1, justifyContent: 'space-between'}}>
+                <Button onPress={() => router.push({pathname: '/update', params: {id}})}>Editar</Button>
+                <Button onPress={handleDelete}>🗑 Excluir</Button>
+            </View>
         </View>
     )
 }

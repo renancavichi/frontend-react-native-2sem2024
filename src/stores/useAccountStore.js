@@ -5,5 +5,6 @@ export const useAccountStore = create((set) => ({
 
     addAccount: (newAccount) => set((state) => ({ accounts: [newAccount, ...state.accounts]})),
     setAccounts: (newAccounts) => set({ accounts: newAccounts }),
-    deleteAccount: (id) => set((state) => ({ accounts: state.accounts.filter((account) => account.id !== id)}))
+    deleteAccount: (id) => set((state) => ({ accounts: state.accounts.filter((account) => account.id !== id)})),
+    updateAccount: (newAccount) => set((state) => ({ accounts: state.accounts.map((account) => account.id === newAccount.id ? newAccount : account)}))
 }))

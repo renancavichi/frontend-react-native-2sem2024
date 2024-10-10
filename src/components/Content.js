@@ -8,6 +8,7 @@ export default function Content(){
   const { accounts, setAccounts } = useAccountStore()
 
   console.log('Accounts: ', accounts)
+  
    useEffect(() => {
         const getAccounts = async () => {
             const response = await fetch('http://localhost:3000/account/list')
