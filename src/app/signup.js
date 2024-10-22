@@ -1,76 +1,79 @@
-import {View, StyleSheet, Text, TextInput} from 'react-native'
+import {View, StyleSheet, Text, TextInput, Alert} from 'react-native'
 import { useState } from "react"
 import Button from '../components/Button'
 import { useRouter } from 'expo-router'
-import { useAccountStore } from '../stores/useAccountStore'
+
 
 export default function SignUp(){
 
-    const { addAccount } = useAccountStore()
     const router = useRouter()
 
-    const [txtServico, setTxtServico] = useState('')
-    const [txtUsername, setTxtUsername] = useState('')
+    const [txtName, setTxtName] = useState('')
+    const [txtEmail, setTxtEmail] = useState('')
+    const [txtAvatar, setTxtAvatar] = useState('')
     const [txtPass, setTxtPass] = useState('')
-    const [txtImgUrl, setTxtImgUrl] = useState('')
 
     const handleCreateAccount = async () => {
-        const account = {
-            service: txtServico,
-            username: txtUsername,
-            logo_image: txtImgUrl,
+        const user = {
+            name: txtName,
+            email: txtEmail,
+            avatar: txtAvatar,
             pass: txtPass,
-            user_id: 1
         }
     
-        const response = await fetch('http://localhost:3000/account', {
+        const response = await fetch('http://localhost:3000/auth/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(account)
+          body: JSON.stringify(user)
         })
 
         if(response.ok){
             const data = await response.json()
-            addAccount(data.account)
+            Alert.alert('Usuário Criado com Sucesso!')
+            setTxtName('')
+            setTxtEmail('')
+            setTxtAvatar('')
+            setTxtPass('')
             router.back()
-            return
+        } else {
+            const data = await response.json()
+            Alert.alert('Erro ao Criar Usuário')
+            console.log(data?.error)
         }
-
-        console.log('Erro ao carregar accounts')
         return
     }
 
     return( 
         <View style={styles.container}>
-          <Text style={{fontSize: 26, marginVertical: 10}}>Cadastre-se</Text>
-          <Text>Serviço:</Text>
+          <Text>Name:</Text>
           <TextInput 
             style={styles.input}
-            onChangeText={setTxtServico}
-            value={txtServico}
-            placeholder='Digite o nome do serviço...'
+            onChangeText={setTxtName}
+            value={txtName}
+            placeholder='Digite seu nome...'
             placeholderTextColor='#DDDDDD'
           />
-          <Text>Username:</Text>
+          <Text>Email:</Text>
           <TextInput 
             style={styles.input}
-            onChangeText={setTxtUsername}
-            value={txtUsername}
+            onChangeText={setTxtEmail}
+            value={txtEmail}
           />
-          <Text>Password:</Text>
+          <Text>Avatar URL:</Text>
+          <TextInput 
+            style={styles.input}
+            onChangeText={setTxtAvatar}
+            value={txtAvatar}
+            keyboardType='url'
+          />
+          <Text>Senha:</Text>
           <TextInput 
             style={styles.input}
             onChangeText={setTxtPass}
             value={txtPass}
-          />
-          <Text>Logo URL:</Text>
-          <TextInput 
-            style={styles.input}
-            onChangeText={setTxtImgUrl}
-            value={txtImgUrl}
-            keyboardType='url'
+            secureTextEntry={true}
           />
         <Button onPress={handleCreateAccount}>Cadatrar</Button>
         </View>

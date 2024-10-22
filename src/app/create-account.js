@@ -4,7 +4,7 @@ import Button from '../components/Button'
 import { useRouter } from 'expo-router'
 import { useAccountStore } from '../stores/useAccountStore'
 
-export default function CreateAccoount(){
+export default function CreateAccount(){
 
     const { addAccount } = useAccountStore()
     const router = useRouter()
