@@ -2,17 +2,21 @@ import { View, Text, StyleSheet} from 'react-native'
 import { Image } from 'expo-image'
 import Feather from '@expo/vector-icons/Feather'
 import { Link } from 'expo-router'
+import { useLoginStore } from '../stores/useLoginStore'
 
 export default function Header(){
+
+    const {name, avatar} = useLoginStore()
+
     return (
         <View style={styles.header}>
             <View style={styles.user}>
                 <Image 
                     style={styles.avatar}
-                    source={require('../../assets/avatar-renan.jpg')} //Local
+                    source={avatar} //Local
                     //source="https://avatars.githubusercontent.com/u/4259630?v=4"
                 />
-                <Text style={styles.name}>Renan Cavichi</Text>
+                <Text style={styles.name}>{name}</Text>
             </View>
             <Link href="signup">
                 <Feather style={styles.menu} name="plus" size={24} color="black" />
