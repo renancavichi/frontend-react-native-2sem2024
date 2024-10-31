@@ -2,12 +2,25 @@ import { ScrollView, StyleSheet, View, Text, ActivityIndicator } from 'react-nat
 import { useEffect } from 'react'
 import Footer from '../components/Footer'
 import { useRouter } from 'expo-router'
+import { getObjectData } from '../utils/asyncStorage'
+import { useLoginStore } from '../stores/useLoginStore'
 
 export default function Init() {
   const router = useRouter()
+  const { login } = useLoginStore()
 
   useEffect(() => {
-    setTimeout(() => router.replace('/login'), 3000)
+    const checkUserLogged = async () => {
+      const userLogged = await getObjectData('userLogged')
+      if(userLogged){
+        login(userLogged)
+        router.replace('/home')
+      } else {
+        router.replace('/login')
+      }
+    }
+    
+    setTimeout(checkUserLogged, 3000)
   },[])
 
   return (

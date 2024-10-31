@@ -3,6 +3,7 @@ import Button from '../components/Button'
 import { useRouter } from 'expo-router'
 import {useState} from 'react'
 import { useLoginStore } from '../stores/useLoginStore'
+import { storeObjectData } from '../utils/asyncStorage'
 
 export default function Login() {
   const router = useRouter()
@@ -30,6 +31,7 @@ export default function Login() {
         const data = await response.json()
         console.log(data)
         loginStore({accessToken: data?.accessToken, ...data.user})
+        await storeObjectData('userLogged', {accessToken: data?.accessToken, ...data.user})
         router.push('/home')
     } else {
         const data = await response.json()
