@@ -7,7 +7,7 @@ export default function CardAccount ({ id, service, userName, imgUrl }) {
     const router = useRouter()
 
     return (
-        <Pressable onPress={() => router.push({pathname: '/showPass', params: {id}})}>
+        <Pressable onPress={() => router.push({pathname: '/show-pass', params: {id}})}>
             <View style={styles.card}>
                 
                 <Image 

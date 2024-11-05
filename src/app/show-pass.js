@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import { useLocalSearchParams, useRouter} from 'expo-router'
 import { useAccountStore } from '../stores/useAccountStore'
 import * as Clipboard from 'expo-clipboard'
+import { fetchAuth } from '../utils/fetchAuth'
 
 export default function ShowPass(){
 
@@ -14,11 +15,8 @@ export default function ShowPass(){
     const account = accounts.find((item) => item.id === +id)
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:3000/account/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const response = await fetchAuth(`http://localhost:3000/account/${id}`, {
+            method: 'DELETE'
         })
         if(response.ok){
             const data = await response.json()

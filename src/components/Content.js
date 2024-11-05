@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import CardAccount from './CardAccount'
 import { useAccountStore } from '../stores/useAccountStore'
+import { fetchAuth } from '../utils/fetchAuth'
 
 export default function Content(){
 
@@ -11,7 +12,7 @@ export default function Content(){
   
    useEffect(() => {
         const getAccounts = async () => {
-            const response = await fetch('http://localhost:3000/account/list')
+            const response = await fetchAuth('http://localhost:3000/account/list')
             if(response.ok){
               const data = await response.json()
               console.log(data)

@@ -18,7 +18,7 @@ export default function Header(){
                 />
                 <Text style={styles.name}>{name}</Text>
             </View>
-            <Link href="signup">
+            <Link href="create-account">
                 <Feather style={styles.menu} name="plus" size={24} color="black" />
             </Link>
         </View>

@@ -3,6 +3,7 @@ import { useState } from "react"
 import Button from '../components/Button'
 import { useRouter } from 'expo-router'
 import { useAccountStore } from '../stores/useAccountStore'
+import { fetchAuth } from '../utils/fetchAuth'
 
 export default function CreateAccount(){
 
@@ -19,15 +20,11 @@ export default function CreateAccount(){
             service: txtServico,
             username: txtUsername,
             logo_image: txtImgUrl,
-            pass: txtPass,
-            user_id: 1
+            pass: txtPass
         }
     
-        const response = await fetch('http://localhost:3000/account', {
+        const response = await fetchAuth('http://localhost:3000/account', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
           body: JSON.stringify(account)
         })
 
