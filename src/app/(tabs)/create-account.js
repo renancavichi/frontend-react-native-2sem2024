@@ -31,7 +31,7 @@ export default function CreateAccount(){
         if(response.ok){
             const data = await response.json()
             addAccount(data.account)
-            router.back()
+            router.replace('/home')
             return
         }
 
